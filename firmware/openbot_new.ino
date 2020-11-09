@@ -159,6 +159,9 @@ Encoder RightEnc(8, 3);
 long LoldPosition  = -999;
 long RoldPosition  = -999;
 
+float lrpm_factor = 0.001; // converting from quadrature encoder to equivalent optical wheel readings
+float rrpm_factor = 0.001;
+
 
 //------------------------------------------------------//
 //SETUP
@@ -388,8 +391,6 @@ void check_for_msg() {
 
 #if (NO_PHONE_MODE)
   void send_vehicle_data() {
-    float lrpm_factor = 0.02;
-    float rrpm_factor = 0.015;
     Serial.print("Voltage: "); Serial.println(get_voltage(), 2);
     Serial.print("Left RPM: "); Serial.println(counter_left*lrpm_factor, 0);
     Serial.print("Right RPM: "); Serial.println(counter_right*rrpm_factor, 0);
@@ -402,9 +403,9 @@ void check_for_msg() {
   void send_vehicle_data() {
     Serial.print(get_voltage());
     Serial.print(",");
-    Serial.print(counter_left);
+    Serial.print(counter_left*lrpm_factor);
     Serial.print(",");
-    Serial.print(counter_right);
+    Serial.print(counter_right*rrpm_factor);
     Serial.print(",");
     Serial.print(distance_estimate);
     Serial.println();
