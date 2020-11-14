@@ -159,8 +159,8 @@ Encoder RightEnc(8, 3);
 long LoldPosition  = -999;
 long RoldPosition  = -999;
 
-float lrpm_factor = 0.001; // converting from quadrature encoder to equivalent optical wheel readings
-float rrpm_factor = 0.001;
+float lrpm_factor = 0.014; // converting from quadrature encoder to equivalent optical wheel readings
+float rrpm_factor = 0.01;
 
 
 //------------------------------------------------------//
